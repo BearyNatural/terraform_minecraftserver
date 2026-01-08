@@ -6,12 +6,13 @@ Minecraft server tested in dev environment before being deployed into production
 terraform_minecraftserver/
   └── main.tf
   └── vpc.tf
+  └── alb.tf
   └── ecs.tf
   └── efs.tf
-  └── alb.tf
   └── variables.tf
-  └── dev.tf
-  └── prod.tf
+  └── dev.auto.tfvars
+  └── prod.auto.tfvars
+..dependencies?
 
 # features (WIP - vomited)
 - separate dev and prod (isolated)
@@ -23,8 +24,21 @@ terraform_minecraftserver/
 - dns setup
     - CNAME minecraft.bearynatural.dev
 
+# testing the terraform code
+terraform plan -var-file="dev.auto.tfvars"
+terraform plan -var-file="prod.auto.tfvars"
 
 
+# others to implement
+auto start and shutdown needs api
+backup of the map is not there
+- health checks? are they working
+
+- double check seed and admin rights
+Can't keep up! Is the server overloaded? Running 2038ms or 40 ticks behind - do we need more resources?
+
+this task (8d77c21f4db242e2b37bc80457c8e436) logs show great and even doing checks on how long it is until a player connects;
+last task deployed after elb updates no longer running right exit code 0
 
 # OIDC
 https://github.com/aws-actions/configure-aws-credentials
